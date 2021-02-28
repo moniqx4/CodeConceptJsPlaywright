@@ -2,8 +2,8 @@ import assert from 'assert';
 
 Feature('login');
 
-Scenario('test something', ({ I }) => {
-    I.fillField('CompanyAlias','100496')
+Scenario('test login', ({ I }) => {
+    I.fillField('CompanyAlias','')
     I.fillField('Username','')
     I.fillField('Password','')
     I.click('Login')

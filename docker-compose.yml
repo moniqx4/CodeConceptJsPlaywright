@@ -1,0 +1,48 @@
+version: "2"        // which version of compose syntax you are using
+services:
+  app:
+    container_name: app  // explicit so we can use this for app:3000
+    build: .             // a self defined Dockerfile, see below
+    ports:               // exposes port 3000 (where express runs)
+      - "3000:3000"         to other containers, and to our local       
+   depends_on:             browser
+      - chrome-container
+    volumes:             // maps so changes to these can be seen
+      - ./e2eTests:/e2eTests
+      - ./package.json:/package.json
+      - ./package-lock.json:/package-lock.json
+      - ./.gitignore:/.gitignore
+      - ./app.js:/app.js
+
+  chrome-container:      // we'll look at this below
+    container_name: chrome-container
+    image: selenium/standalone-chrome:88.0
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+
+  codeceptjs:
+    image: codeceptjs/codeceptjs
+    depends_on:
+      - chrome-container
+      - web
+    environment:
+      - NO_OF_WORKERS=3
+      - CODECEPT_ARGS=--debug
+    volumes:
+      - .:/tests
+
+  web:
+    image: node
+    command: node app/server.js
+    volumes:
+      - .:/app
+
+  playwright-container: 
+    container_name: : playwright-container
+    image: mcr.microsoft.com/playwright::bionic
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+    - ""

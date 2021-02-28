@@ -16,7 +16,8 @@ exports.config = {
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    'employeeDBLogin': './pages/employeeDashboardLogin.ts',
   },
   bootstrap: null,
   mocha: {},

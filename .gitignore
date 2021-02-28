@@ -2,3 +2,4 @@
 node_modules/*.*
 output/*.*
 yarn*.*
+node_modules

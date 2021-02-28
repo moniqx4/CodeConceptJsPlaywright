@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@testomatio/reporter": "^0.3.2",
+    "assert": "^2.0.0",
     "codeceptjs": "^3.0.5",
     "playwright": "^1.9.1",
     "ts-node": "^9.1.1",

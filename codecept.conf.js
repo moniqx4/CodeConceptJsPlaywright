@@ -34,6 +34,11 @@ exports.config = {
     },
     plugins: {
       'allure': {}
+    },    
+    testomat: {
+      enabled: true,
+      require: '@testomatio/reporter/lib/adapter/codecept',
+      apiKey: 'owb878996gew',
     },
     autoLogin: {
       enabled: true,
